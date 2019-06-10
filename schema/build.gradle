@@ -1,0 +1,54 @@
+plugins {
+  id "com.google.protobuf" version "0.8.8"
+  id 'java-library'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+dependencies {
+    implementation "com.google.protobuf:protobuf-java:${protoVersion}"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java/", "src/generated/main/grpc/", "src/generated/main/java/"]
+        }
+    }
+    test {
+        java {
+            srcDirs = ["src/test/"]
+        }
+    }
+    clean {
+      delete "$projectDir/src/generated"
+    }
+}
+protobuf {
+  protoc {
+    artifact = 'com.google.protobuf:protoc:3.8.0'
+  }
+  plugins {
+    grpc {
+      artifact = 'io.grpc:protoc-gen-grpc-java:1.21.0'
+    }
+  }
+  generateProtoTasks {
+    all().each { task ->
+          task.plugins {
+              grpc {}
+          }
+          task.builtins {
+              java { }
+              cpp {}
+              csharp {}
+          }
+      }    
+  }  
+}

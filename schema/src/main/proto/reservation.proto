@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+package schema;
+option java_outer_classname = "TransactionProtos";
+option java_package = "com.reservation.schema";
+
+// The greeting service definition.
+service ReservationService {
+  // Sends a greeting
+  rpc Reserve (TransactionRequest) returns (TransactionResponse) {}
+}
+
+
+message TransactionRequest {
+    bytes id = 1; // Unique Id assigned to a transaction (UUID / GUID)
+    google.protobuf.Timestamp date = 2;
+}
+message TransactionResponse {
+    bytes id = 1; // Unique Id assigned to a transaction (UUID / GUID)
+    google.protobuf.Timestamp date = 2;
+    string message = 3;
+}
