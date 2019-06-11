@@ -30,12 +30,12 @@ jib {
   }
   container {
     jvmFlags = ['-Xms512m', '-Xmx16384m']
-    mainClass = 'grpc.java.server.App'
+    mainClass = 'grpc.java.server.ReservationServer'
     format = 'OCI'
   }
 }
 application {
-  mainClassName = 'grpc.java.server.App'
+  mainClassName = 'grpc.java.server.ReservationServer'
 }
 version = '1.0'
 description = 'grpc-server'

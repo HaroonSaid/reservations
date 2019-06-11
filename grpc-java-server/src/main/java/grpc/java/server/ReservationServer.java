@@ -34,10 +34,12 @@ public class ReservationServer {
     @Override
     public void reserve(TransactionProtos.TransactionRequest request, StreamObserver<TransactionProtos.TransactionResponse> responseObserver) {
       System.out.println(request);
-      String id = UUID.randomUUID().toString();
-      String msg = "Hello from Java Rpc:" + id;
-
-      TransactionProtos.TransactionResponse response =TransactionProtos.TransactionResponse.newBuilder().setMessage(msg).build();
+      UUID id = UUID.randomUUID();
+      String msg = "Hello from Java Rpc:" + id.toString();
+      TransactionProtos.TransactionResponse response =TransactionProtos.TransactionResponse.newBuilder()
+        .setMessage(msg)
+        .setId(Convertor.toByteString(id))
+        .build();
 
       responseObserver.onNext(response);
       responseObserver.onCompleted();

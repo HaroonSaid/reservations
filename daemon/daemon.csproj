@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Protobuf Include="../schema/src/main/proto/reservation.proto" GrpcServices="Client"/>
+    <Protobuf Include="../schema/src/main/proto/health.proto" GrpcServices="Client"/>
   </ItemGroup>
 
 </Project>

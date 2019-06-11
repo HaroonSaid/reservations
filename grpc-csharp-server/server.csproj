@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Protobuf Include="../schema/src/main/proto/reservation.proto" GrpcServices="Server" Generator="MSBuild:Compile"/>
+    <Protobuf Include="../schema/src/main/proto/health.proto" GrpcServices="Server" Generator="MSBuild:Compile"/>
     <Content Include="@(Protobuf)" />
     <None Remove="@(Protobuf)" />
   </ItemGroup>
